@@ -2,6 +2,7 @@ from flask import Flask, request
 from datetime import datetime
 from bson.objectid import ObjectId
 from db_connection import collection
+import os
 
 app = Flask(__name__)
 
@@ -47,4 +48,5 @@ def delete():
     return str(res)
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
