@@ -11,11 +11,9 @@ def build_query(request,mode):
     '''
     user = request.headers.get('user')
     message_id = request.args.get('id')
-    query = {'$or' : [{'sender' : user}, {'receiver' : user}]} if mode == 'delete' else {'receiver' : user}
+    query = {'$or' : [{'sender' : user}, {'receiver' : user}]} if mode == 'delete' else {'receiver' : user, 'read' : False}
     if message_id != None:
         query = {'$and' : [{'_id' : ObjectId(message_id)}, query]}
-    elif mode == 'read':
-        query= {'$and' : [{'read' : False}, query]}
     return query
 
 
