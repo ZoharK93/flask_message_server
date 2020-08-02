@@ -8,11 +8,11 @@ app = Flask(__name__)
 
 def run_function(request,callback):
     try:
-        collection = connect()
+        collection = get_collection()
         return callback(request,collection)
     except:
         e = sys.exc_info()
-        return 'An error has occured: %s' % str(e)
+        return 'An error has occured: %s' % e
 
 @app.route('/', methods=['GET'])
 def home():
