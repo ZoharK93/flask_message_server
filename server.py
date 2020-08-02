@@ -12,7 +12,7 @@ def run_function(request,callback):
         return callback(request,collection)
     except:
         e = sys.exc_info()
-        return 'An error has occured: %s' % e
+        return 'An error has occured: %s' % str(e)
 
 @app.route('/', methods=['GET'])
 def home():
