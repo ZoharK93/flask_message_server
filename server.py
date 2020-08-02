@@ -1,5 +1,5 @@
 from flask import Flask, request
-from db_connection import connect
+from db_connection import get_collection
 from functions import *
 import os
 import sys
