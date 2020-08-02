@@ -1,5 +1,13 @@
 from pymongo import MongoClient
+from cryptography.fernet import Fernet
 
-client = MongoClient("mongodb+srv://zoharkapustin:9arboGgKkr5WGxV3@flaskserver.qxojc.mongodb.net/messages?retryWrites=true&w=majority")
+key = open("secret.key", "rb").read()
+enc_password = open("password", "rb").read()
+
+f = Fernet(key)
+dec_password = str(f.decrypt(enc_password))[2:-1]
+print(dec_password)
+
+client = MongoClient("mongodb+srv://zoharkapustin:%s@flaskserver.qxojc.mongodb.net/messages?retryWrites=true&w=majority" % dec_password)
 db = client.messages
 collection = db.messages
