@@ -16,20 +16,23 @@ def run_function(request,callback):
 
 @app.route('/', methods=['GET'])
 def home():
-    #Route for reading messages intended for a specific user
+    #Route for getting messages intended for a specific user (all/read/unread)
     return run_function(request,read_messages)
     
 
 @app.route('/write', methods=['POST'])
 def write():
+    #Route for writing messages
     return run_function(request,write_message)
 
 @app.route('/read', methods=['GET'])
-def read():    
+def read():
+    #Route for reading one message    
     return run_function(request,read_one)
 
 @app.route('/delete', methods=['DELETE'])
 def delete():
+    #Route for deleting one message
     return run_function(request,delete_message)
 
 if __name__ == '__main__':
