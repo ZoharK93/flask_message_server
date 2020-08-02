@@ -15,7 +15,7 @@ def build_query(request,mode):
     if message_id != None:
         query = {'$and' : [{'_id' : ObjectId(message_id)}, query]}
     elif mode == 'read':
-        query['$and'].append({'read' : False})
+        query= {'$and' : [{'read' : False}, query]}
     return query
 
 
