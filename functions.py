@@ -59,6 +59,7 @@ def read_one(request,collection):
     User specified in the header is the receiver.
     If no message id was specified, reads the first message for this user.
     If the user is not the receiver of intended message, does nothing.
+    Returns the message that was read, or None if no such message exists.
     '''
     res = collection.find_one_and_update(build_query(request,'read'), {'$set' : {'read' : True}})
     return str(res)
@@ -69,6 +70,7 @@ def delete_message(request,collection):
     User specified in the header is the sender/receiver.
     If no message id was specified, deletes one message by this user.
     If the user is not the sender/receiver of intended message, does nothing.
+    Returns the message that was deleted, or None if no such message exists.
     '''
     res = collection.find_one_and_delete(build_query(request,'delete'))
     return str(res)
